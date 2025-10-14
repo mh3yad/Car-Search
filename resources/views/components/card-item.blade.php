@@ -1,6 +1,6 @@
 @props(['id' => 1 ,'name' => '', 'version' => '', 'price' => '', 'model' => '', 'type' => ''])
 <div class="car-item card">
-    <a href="/car/{{$id}}">
+    <a href="{{ route("car.show", 1) }}">
         <img
                 src="/img/cars/Lexus-RX200t-2016/1.jpeg"
                 alt=""

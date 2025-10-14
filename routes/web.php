@@ -8,6 +8,9 @@ Route::get('/', function () {
     return view('index');
 });
 
+Route::get('/car/search', [CarController::class, 'search'])->name('car.search');
+Route::resource("car", CarController::class);
+
 Route::get("/login", [\App\Http\Controllers\LoginController::class, "create"])->name("login");
 Route::get("/signup", [\App\Http\Controllers\SignupController::class, "create"])->name("signup");
 
