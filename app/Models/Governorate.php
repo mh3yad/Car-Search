@@ -7,5 +7,5 @@ use Illuminate\Database\Eloquent\Model;
 class Governorate extends Model
 {
     public $timestamps = false;
-
+    protected $fillable = ['name'];
 }
