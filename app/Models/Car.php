@@ -33,7 +33,7 @@ class Car extends EloquentModel
 
     public function features() : HasOne
     {
-        return $this->hasOne(CarFeature::class);
+        return $this->hasOne(CarFeatures::class);
     }
 
     public function images(): HasMany
