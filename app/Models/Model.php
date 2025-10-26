@@ -2,11 +2,13 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model as Eloquent;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Model extends Eloquent
 {
+    use HasFactory;
     public $timestamps = false;
     protected $fillable = ['name','maker_id'];
 
