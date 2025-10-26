@@ -24,10 +24,11 @@ class CarFactory extends Factory
     public function definition(): array
     {
         return [
+            'maker_id' => Model::inRandomOrder()->first()->id,
             'model_id' => Model::inRandomOrder()->first()->id,
             'price' => $this->faker->randomFloat(2,5,1000),
             'car_type' => CarType::inRandomOrder()->first()->id,
-            'Vin' =>  strtoupper(Str::random(17)),
+            'vin' =>  strtoupper(Str::random(17)),
             'fuel_type' => FuelType::inRandomOrder()->first()->id,
             'mileage' => ((int)($this->faker->randomFloat(5,500,1000))) * 1000,
             'year' => $this->faker->year(),

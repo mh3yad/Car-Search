@@ -13,10 +13,11 @@ return new class extends Migration
     {
         Schema::create('cars', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('maker_id')->constrained('makers');
             $table->foreignId('model_id')->constrained('models');
             $table->integer('year');
             $table->float('price');
-            $table->string('Vin');
+            $table->string('vin');
             $table->integer('mileage');
             $table->foreignId('car_type')->constrained('car_types');
             $table->foreignId('fuel_type')->constrained('fuel_types');
