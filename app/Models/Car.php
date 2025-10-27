@@ -66,7 +66,7 @@ class Car extends EloquentModel
         return $this->belongsTo(Model::class);
     }
 
-    public function favouriteCars(): BelongsToMany
+    public function favouredCars(): BelongsToMany
     {
         return $this->belongsToMany(Car::class,'favourite_cars','user_id','car_id');
     }
