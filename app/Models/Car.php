@@ -75,4 +75,9 @@ class Car extends EloquentModel
     {
         return $this->belongsTo(User::class);
     }
+
+    public function getCreateData(): string
+    {
+        return (new \Carbon\Carbon($this->created_at))->format('Y-m-d');
+    }
 }

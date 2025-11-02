@@ -9,6 +9,7 @@ use App\Models\FuelType;
 use App\Models\Governorate;
 use App\Models\Maker;
 use App\Models\Model;
+use App\Models\User;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
@@ -21,7 +22,8 @@ class CarController extends Controller
      */
     public function index()
     {
-        return view('car.index');
+        $cars = User::find(6)->cars->sortByDesc('created_at');
+        return view('car.index',compact('cars'));
     }
 
     /**
@@ -107,5 +109,16 @@ class CarController extends Controller
         $types = CarType::all();
         $fuel = FuelType::all();
         return view('car.search', compact('cars','carsCount','makers','models','governorates','cities','types','fuel'));
+    }
+
+    public function images(Car $car)
+    {
+        return view("car.show", compact("car"));
+    }
+
+    public function watchlist()
+    {
+        $cars = User::find(1)->favouriteCars()->get();
+        return view('car.watchlist', compact('cars'));
     }
 }

@@ -1,8 +1,11 @@
 @props(['car' => ''])
 <div class="car-item card">
     <a href="{{ route("car.show", $car->id) }}">
+        @php
+        //TODO add main image
+        @endphp
         <img
-                src="{{ $car->images[0]->image_path }}"
+                src="https://img.freepik.com/free-psd/black-isolated-car_23-2151852894.jpg"
                 alt=""
                 class="car-item-img rounded-t"
         />
