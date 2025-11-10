@@ -15,7 +15,8 @@ class HomeController extends Controller
 {
     public function index()
     {
-        $cars = Car::orderBy('published_at', 'desc')->limit(30)->get();
+        $cars = Car::with(['city','maker','model','type','fuel'])
+            ->orderBy('published_at', 'desc')->limit(30)->paginate(30);
         $makers = Maker::all();
         $models = Model::all();
         $governorates = Governorate::all();

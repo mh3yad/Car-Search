@@ -184,7 +184,7 @@
                     </div>
                 </div>
             </section>
-            <!--/ New Cars -->
+            <div>{{$cars->onEachSide(1)->links()}}</div>
         </main>
         <x-slot:footerLinks>
             <a href="#">link 3</a>

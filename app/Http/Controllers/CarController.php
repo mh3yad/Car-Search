@@ -22,7 +22,7 @@ class CarController extends Controller
      */
     public function index()
     {
-        $cars = User::find(6)->cars->sortByDesc('created_at');
+        $cars = User::find(1)->cars()->with(['maker','model'])->orderBy('created_at','desc')->paginate(10);
         return view('car.index',compact('cars'));
     }
 
@@ -99,16 +99,16 @@ class CarController extends Controller
 
     public function search(Request $request)
     {
-        $query = Car::orderBy('published_at', 'desc');
-        $carsCount = $query->count();
-        $cars = $query->limit(30)->get();
         $makers = Maker::all();
         $models = Model::all();
         $governorates = Governorate::all();
         $cities = City::all();
         $types = CarType::all();
         $fuel = FuelType::all();
-        return view('car.search', compact('cars','carsCount','makers','models','governorates','cities','types','fuel'));
+
+        $query = Car::with(['city','maker','model','type','fuel'])->orderBy('published_at', 'desc');
+        $cars = $query->paginate(3);
+        return view('car.search', compact('cars','makers','models','governorates','cities','types','fuel'));
     }
 
     public function images(Car $car)
@@ -118,7 +118,7 @@ class CarController extends Controller
 
     public function watchlist()
     {
-        $cars = User::find(1)->favouriteCars()->get();
+        $cars = User::find(1)->favouriteCars()->with(['city','maker','model','type','fuel'])->paginate(10);
         return view('car.watchlist', compact('cars'));
     }
 }
